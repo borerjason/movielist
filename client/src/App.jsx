@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import movies from '../../database/data.js'
 import MovieList from './components/MovieList.jsx';
 // import MovieEntry from './components/MovieEntry';
-// import SearchBar from './components/SearchBar.jsx';
+import SearchBar from './components/SearchBar.jsx';
 
 class App extends React.Component {
   constructor(props){
@@ -21,7 +21,7 @@ class App extends React.Component {
 
       <div>
       <div id='search-bar'>
-        {/* <SearchBar />  */}
+        <SearchBar /> 
       </div>
       <div className='movie-list-container'>
        <MovieList
