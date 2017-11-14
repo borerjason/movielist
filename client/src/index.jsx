@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import axios from 'axios';
 import movies from '../../database/data.js'
 import MovieList from './components/MovieList.jsx';
 // import MovieEntry from './components/MovieEntry';
@@ -11,9 +11,15 @@ class App extends React.Component {
     super(props)
     
     this.state = {
-      movies: window.movies      
+      movies: []     
     }
+  }
 
+  componentWillMount() {
+    axios.get('/movies')
+    .then((result) => {
+      this.setState({ movies: result.data })
+      });
   }
 
   onClickUpdateMovieList (value) {
