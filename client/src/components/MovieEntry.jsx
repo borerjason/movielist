@@ -1,18 +1,30 @@
 import React from 'react';
 
-const MovieEntry = ( {movie} ) => {
-  return (
-    <div className="movie-entry-container">
+class MovieEntry extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      watched: false,
+    } 
+  }
+
+
+  render() {
+    return (
+      <div className="movie-entry-container">
       <div className="movie-sub-container">
-        {movie.title}
+        {this.props.movie.Title}
       </div>
       <div>
-        <button className="btn btn-success watched">watched</button>
+        <button 
+          className="btn btn-success"
+          onClick={() => this.setState({watched: !this.state.watched })}
+        >watched</button>
       </div>
     </div>
-
-    
-  )
+   )
+  }
 }
 
 export default MovieEntry;

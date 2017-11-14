@@ -11,20 +11,22 @@ class App extends React.Component {
     super(props)
     
     this.state = {
-      movies: []     
+      movies: [],
+      watched: false     
     }
   }
 
   componentWillMount() {
-    axios.get('/movies')
+    axios.get('/load')
     .then((result) => {
+      console.log('RESULT IN CLIENT', result)
       this.setState({ movies: result.data })
       });
   }
 
   onClickUpdateMovieList (value) {
     let movies = this.state.movies.filter(movie => {
-      return movie.title.includes(value); 
+      return movie.Title.includes(value); 
     });
     this.setState({
       movies: movies
