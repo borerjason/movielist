@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import movies from '../../database/data.js'
 import MovieList from './components/MovieList.jsx';
-// import MovieEntry from './components/MovieEntry';
+import AddMovies from './components/AddMovies.jsx';
 import SearchBar from './components/SearchBar.jsx';
 
 class App extends React.Component {
@@ -24,12 +24,8 @@ class App extends React.Component {
 
   onClickUpdateMovieList (value) {
     let movies = this.state.movies.filter(movie => {
-       //console.log('Value',value);
-       console.log(movie.title)
-       console.log(movie.title.includes(value));
       return movie.title.includes(value); 
     });
-    console.log('Filtered Movies', movies);
     this.setState({
       movies: movies
     });
@@ -39,7 +35,10 @@ class App extends React.Component {
     return (
 
       <div>
-      <div id='search-bar'>
+      <div id="add-movies">
+        <AddMovies />
+      </div>
+      <div className="search-bar">
         <SearchBar 
           updateMovies={(value)=> this.onClickUpdateMovieList(value)}/> 
       </div>
