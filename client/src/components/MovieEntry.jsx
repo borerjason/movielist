@@ -6,8 +6,12 @@ const MovieEntry = ( {movie} ) => {
       <div className="movie-sub-container">
         {movie.title}
       </div>
+      <div>
+        <button className="btn btn-success watched">watched</button>
+      </div>
+    </div>
 
-    </div> 
+    
   )
 }
 

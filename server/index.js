@@ -3,5 +3,5 @@ const app = express();
 
 app.use(express.static(__dirname + '/../client/dist' ));
 
-app.listen(3000, 'localhost');
+app.listen(process.env.PORT || 3000);
 

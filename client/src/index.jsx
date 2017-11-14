@@ -16,12 +16,26 @@ class App extends React.Component {
 
   }
 
+  onClickUpdateMovieList (value) {
+    let movies = this.state.movies.filter(movie => {
+       //console.log('Value',value);
+       console.log(movie.title)
+       console.log(movie.title.includes(value));
+      return movie.title.includes(value); 
+    });
+    console.log('Filtered Movies', movies);
+    this.setState({
+      movies: movies
+    });
+  }
+
   render() {
     return (
 
       <div>
       <div id='search-bar'>
-        <SearchBar /> 
+        <SearchBar 
+          updateMovies={(value)=> this.onClickUpdateMovieList(value)}/> 
       </div>
       <div className='movie-list-container'>
        <MovieList
