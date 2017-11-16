@@ -22,6 +22,7 @@ class App extends React.Component {
   componentWillMount() {
     axios.get('/load').then((result) => {
       this.setState({ movies: result.data });
+      console.log(result.data);
     });
   }
 
@@ -37,7 +38,7 @@ class App extends React.Component {
 
   onClickUpdateMovieList(value) {
     const films = this.state.movies.filter(movie =>
-      movie.Title.includes(value));
+      movie.Title.toLowerCase().includes(value.toLowerCase()));
 
     this.setState({
       movies: films,
