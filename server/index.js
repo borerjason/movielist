@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const getMovies = require('./getMovies');
+const db = require('../database/index');
 
 const app = express();
 
@@ -19,7 +20,12 @@ app.get('/load', (req, res) => {
           Watched: false,
         };
         movies.push(movieObj);
+        db.store(movieObj)
+          .then((result) => {
+            console.log(result);
+          });
       });
+
       res.send(movies);
     });
 });

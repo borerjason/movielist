@@ -10,3 +10,8 @@ const connection = mysql.createConnection({
 
 const db = Promise.promisifyAll(connection);
 
+const store = ({ Title, Popularity, ReleaseDate, Watched }) =>
+  db.queryAsync(`INSERT INTO movies (TITLE, Popularity, Date, Watched)
+                 VALUES (?, ?, ?, ?)`, [Title, Popularity, ReleaseDate, Watched]);
+
+module.exports.store = store;
