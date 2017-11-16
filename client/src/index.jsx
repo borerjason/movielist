@@ -19,11 +19,13 @@ class App extends React.Component {
     this.movieView = this.movieView.bind(this);
   }
 
-  componentWillMount() {
-    axios.get('/movies').then((movies) => {
-      this.setState({ movies: movies.data });
-      console.log(movies);
-    });
+  componentDidMount() {
+    axios.get('/load')
+      .then(() => {
+        axios.get('/movies').then((movies) => {
+          this.setState({ movies: movies.data });
+        });
+      });
   }
 
   onClickToggleWatched() {
@@ -38,7 +40,7 @@ class App extends React.Component {
 
   onClickUpdateMovieList(value) {
     const films = this.state.movies.filter(movie =>
-      movie.Title.toLowerCase().includes(value.toLowerCase()));
+      movie.TITLE.toLowerCase().includes(value.toLowerCase()));
 
     this.setState({
       movies: films,
