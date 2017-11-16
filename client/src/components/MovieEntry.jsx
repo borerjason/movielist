@@ -19,9 +19,10 @@ class MovieEntry extends React.Component {
         <div>
           <button
             className="btn btn-success"
-            onClick={() => this.setState({ watched: !this.state.watched })}
+            onClick={() => { this.props.movie.Watched = !this.props.movie.Watched; }}
           >watched
           </button>
+          {}
         </div>
       </div>
     );

@@ -11,10 +11,12 @@ class App extends React.Component {
 
     this.state = {
       movies: [],
-      watched: false
+      view: 'all',
     };
 
     this.onClickToggleWatched = this.onClickToggleWatched.bind(this);
+    this.onClickToggleToWatch = this.onClickToggleToWatch.bind(this);
+    this.movieView = this.movieView.bind(this);
   }
 
   componentWillMount() {
@@ -24,20 +26,35 @@ class App extends React.Component {
   }
 
   onClickToggleWatched() {
-    this.setState({ watched: true });
+    this.setState({
+      view: 'watched',
+    });
   }
 
-  onClickToggleWatch() {
-    this.setState({ watched: true });
+  onClickToggleToWatch() {
+    this.setState({ view: 'notwatched' });
   }
 
   onClickUpdateMovieList(value) {
     const films = this.state.movies.filter(movie =>
-      movie.Title.includes(value)
-    );
+      movie.Title.includes(value));
+
     this.setState({
-      movies: films
+      movies: films,
     });
+  }
+
+  movieView() {
+    if (this.state.view === 'watched') {
+      const films = this.state.movies.filter(movie =>
+        movie.Watched);
+      return films;
+    } else if (this.state.view === 'notwatched') {
+      const films = this.state.movies.filter(movie =>
+        !movie.Watched);
+      return films;
+    }
+    return this.state.movies;
   }
 
   render() {
@@ -48,8 +65,16 @@ class App extends React.Component {
         </div>
         <div className="top-container">
           <div className="watched-buttons">
-            <button className="btn btn-secondary">Watched</button>
-            <button className="btn btn-secondary">To Watch</button>
+            <button
+              className="btn btn-secondary"
+              onClick={this.onClickToggleWatched}
+            >Watched
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={this.onClickToggleToWatch}
+            >To Watch
+            </button>
           </div>
           <div className="search-bar">
             <SearchBar
@@ -58,11 +83,11 @@ class App extends React.Component {
           </div>
         </div>
         <div className="movie-list-container">
-          <MovieList movies={this.state.movies} />
+          <MovieList movies={this.movieView()} watched={this.state.watched} />
         </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<App /> , document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
