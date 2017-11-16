@@ -5,6 +5,8 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'Metro123',
+  database: 'movies',
 });
 
-connection.connect();
+const db = Promise.promisifyAll(connection);
+
