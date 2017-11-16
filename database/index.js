@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 const db = Promise.promisifyAll(connection);
 
 const store = movieData =>
-  db.queryAsync(`INSERT INTO movies (TITLE, Popularity, Date, Watched)
+  db.queryAsync(`INSERT INTO movies (TITLE, Popularity, release_date, Watched)
                  VALUES ?`, [movieData]);
 
 const retrieve = () =>

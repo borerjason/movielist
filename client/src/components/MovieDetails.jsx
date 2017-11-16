@@ -4,7 +4,7 @@ const MovieDetails = props => (
   <div>
     <div>
       {console.log(props)}
-      Release Date: {props.movie.Date}   
+      Release Date: {props.movie.release_date}   
     </div>
     <div>
       Popularity Score: {props.movie.Popularity}
