@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import MovieList from './components/MovieList.jsx';
-import AddMovies from './components/AddMovies.jsx';
-import SearchBar from './components/SearchBar.jsx';
+import MovieList from './components/MovieList';
+import AddMovies from './components/AddMovies';
+import SearchBar from './components/SearchBar';
 
 class App extends React.Component {
   constructor(props) {
