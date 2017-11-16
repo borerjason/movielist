@@ -39,6 +39,12 @@ class App extends React.Component {
   }
 
   onClickUpdateMovieList(value) {
+    if (value === '') {
+      axios.get('/movies')
+        .then((movies) => {
+          this.setState({ movies: movies.data });
+        });
+    }
     const films = this.state.movies.filter(movie =>
       movie.TITLE.toLowerCase().includes(value.toLowerCase()));
 
