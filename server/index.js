@@ -10,22 +10,19 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.get('/load', (req, res) => {
   getMovies()
     .then((response) => {
-      const rawMovies = response.data.results;
-      const movies = [];
-      rawMovies.forEach((movie) => {
-        const movieObj = {
-          Title: movie.title,
-          ReleaseDate: movie.release_date,
-          Popularity: movie.vote_average,
-          Watched: false,
-        };
-        movies.push(movieObj);
-        db.store(movieObj)
-          .then((result) => {
-            console.log(result);
-          });
+      const movies = response.data.results.map((movie) => {
+        return [
+          movie.title,
+          movie.vote_average,
+          movie.release_date,
+          false,
+        ];
       });
-      res.send(movies);
+      db.store(movies)
+        .then((result) => {
+          console.log(result);
+          res.end();
+        });
     });
 });
 

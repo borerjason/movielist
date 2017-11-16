@@ -10,9 +10,9 @@ const connection = mysql.createConnection({
 
 const db = Promise.promisifyAll(connection);
 
-const store = ({ Title, Popularity, ReleaseDate, Watched }) =>
+const store = movieData =>
   db.queryAsync(`INSERT INTO movies (TITLE, Popularity, Date, Watched)
-                 VALUES (?, ?, ?, ?)`, [Title, Popularity, ReleaseDate, Watched]);
+                 VALUES ?`, [movieData]);
 
 const retrieve = () =>
   db.queryAsync('SELECT * FROM movies');
