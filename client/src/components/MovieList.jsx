@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieEntry from './MovieEntry.jsx';
+import MovieEntry from './MovieEntry';
 
 const MovieList = ({ movies, watched }) => {
   return (

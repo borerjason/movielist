@@ -20,9 +20,9 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('/load').then((result) => {
-      this.setState({ movies: result.data });
-      console.log(result.data);
+    axios.get('/movies').then((movies) => {
+      this.setState({ movies: movies.data });
+      console.log(movies);
     });
   }
 
@@ -48,11 +48,11 @@ class App extends React.Component {
   movieView() {
     if (this.state.view === 'watched') {
       const films = this.state.movies.filter(movie =>
-        movie.Watched);
+        !movie.Watched);
       return films;
     } else if (this.state.view === 'notwatched') {
       const films = this.state.movies.filter(movie =>
-        !movie.Watched);
+        !!movie.Watched);
       return films;
     }
     return this.state.movies;

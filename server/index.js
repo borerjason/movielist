@@ -25,7 +25,13 @@ app.get('/load', (req, res) => {
             console.log(result);
           });
       });
+      res.send(movies);
+    });
+});
 
+app.get('/movies', (req, res) => {
+  db.retrieve()
+    .then((movies) => {
       res.send(movies);
     });
 });

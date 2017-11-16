@@ -14,4 +14,8 @@ const store = ({ Title, Popularity, ReleaseDate, Watched }) =>
   db.queryAsync(`INSERT INTO movies (TITLE, Popularity, Date, Watched)
                  VALUES (?, ?, ?, ?)`, [Title, Popularity, ReleaseDate, Watched]);
 
+const retrieve = () =>
+  db.queryAsync('SELECT * FROM movies');
+
 module.exports.store = store;
+module.exports.retrieve = retrieve;
